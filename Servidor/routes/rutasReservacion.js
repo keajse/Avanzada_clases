@@ -11,16 +11,15 @@ const { deleteReservas } = require('../controllers/controladorReservas.js');
 
 //Personalizar rutas
 
-const rutas = Router();
+const rutas=Router();
 
 //Listado de rutas.
 
 rutas.get('/reservas', getReservas);
 rutas.post('/reserva/nueva', addReservas);
 rutas.put('/reserva/editar', updateReservas);
-rutas.delete('/reserva/eliminar', deleteReservas)
+rutas.delete('/reserva/eliminar', deleteReservas);
 
 
 //Enviar al modelo (exportar)
-
-module.exports = rutas;
+module.exports=rutas;

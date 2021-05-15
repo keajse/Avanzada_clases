@@ -1,6 +1,6 @@
 //Importar de express las variables request y response
 
-const { request, response }=requiere('express');
+const { request, response }=require('express');
 
 
 
@@ -39,5 +39,5 @@ module.exports = {
     getReservas, 
     addReservas, 
     updateReservas, 
-    deleteReservas
+    deleteReservas,
 }
