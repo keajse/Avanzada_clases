@@ -58,12 +58,14 @@ async function deleteReservas(req=request, res=response){
     });
 }
 
-async function getReservas(req=request, res=response){
+async function getDataReserva (req=request, res=response){
 
-    let getAllData = await ReservaModelo.find()
+    let id= req.params.id;
+
+    let getDataReserva = await ReservaModelo.findById(id)
     res.json({
         estado: true,
-        mensaje: getAllData
+        mensaje: getDataReserva
     });
 }
 
@@ -75,5 +77,6 @@ module.exports = {
     addReservas, 
     updateReservas, 
     deleteReservas,
+    getDataReserva
 
 }

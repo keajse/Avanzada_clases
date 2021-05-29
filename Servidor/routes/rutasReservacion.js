@@ -8,6 +8,7 @@ const { getReservas } = require('../controllers/controladorReservas.js');
 const { addReservas } = require('../controllers/controladorReservas.js');
 const { updateReservas } = require('../controllers/controladorReservas.js');
 const { deleteReservas } = require('../controllers/controladorReservas.js');
+const { getDataReserva } = require('../controllers/controladorReservas.js');
 
 //Importar validaciones
 const {validatorRequest}=require('../validations/validations.js');
@@ -35,6 +36,7 @@ const rutas=Router();
 //Listado de rutas.
 
 rutas.get('/reserva/consulta', getReservas);
+rutas.get('/reserva/consult/:id', getDataReserva);
 rutas.post('/reserva/nueva', validations, addReservas);
 rutas.put('/reserva/editar/:id', updateReservas);
 rutas.delete('/reserva/eliminar/:id', deleteReservas);
