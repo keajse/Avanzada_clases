@@ -2,36 +2,71 @@
 
 const { request, response }=require('express');
 
+//Importar modelo de datos del API
+const ReservaModelo = require('../models/ReservaModelo.js')
+
 
 
 // Se crean funciones para cada uno de los servicios que prestará el api, menú del restaurante.
-function getReservas(req=request, res=response){
+async function getReservas(req=request, res=response){
+
+    let getAllData = await ReservaModelo.find()
     res.json({
         estado: true,
-        mensaje: "Plato de tipo GET"
+        mensaje: getAllData
     });
 }
 
-function addReservas(req=request, res=response){
+async function addReservas(req=request, res=response){
+    let dataReserva=req.body;
+
+    let reserva=new ReservaModelo(dataReserva);
+    await reserva.save();
+    
     res.json({
-        estado: true,
-        mensaje: "Plato de tipo POST"
+        estado:true,
+        mensaje:'Reserva realizada con éxito',
+        datos:reserva
     });
 }
 
-function updateReservas(req=request, res=response){
+
+
+
+async function updateReservas(req=request, res=response){
+
+    let id=req.params.id;
+    let dataReserva = req.body;
+
+    await ReservaModelo.findByIdAndUpdate(id,dataReserva);
+
     res.json({
         estado: true,
-        mensaje: "Plato de tipo PUT"
+        mensaje: "Reserva actualizada con éxito"
     });
 }
 
-function deleteReservas(req=request, res=response){
+async function deleteReservas(req=request, res=response){
+
+    let id= req.params.id;
+
+    await ReservaModelo.findByIdAndDelete(id);
+
     res.json({
         estado: true,
-        mensaje: "Plato de tipo DELETE"
+        mensaje: "Reserva eliminada con éxito"
     });
 }
+
+async function getReservas(req=request, res=response){
+
+    let getAllData = await ReservaModelo.find()
+    res.json({
+        estado: true,
+        mensaje: getAllData
+    });
+}
+
 
 //Para exportar archivos. Se colocan las llaves porque son más de una.
 
@@ -40,4 +75,5 @@ module.exports = {
     addReservas, 
     updateReservas, 
     deleteReservas,
+
 }
